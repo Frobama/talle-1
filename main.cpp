@@ -1,4 +1,7 @@
 #include <iostream>
+#include "MaterialBibliografico.h"
+#include "Libro.h"
+#include<string>
 using namespace std;
 
 int main() {
@@ -21,6 +24,6 @@ int main() {
     }
     
     cout<<"XD"<<endl;
-
+    
     return 0;
 }

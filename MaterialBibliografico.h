@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+using namespace std;
 
 class MaterialBibliografico{
 
@@ -10,9 +11,11 @@ class MaterialBibliografico{
         bool prestado; 
     public:
         MaterialBibliografico(string nombre, string isbn, string autor, bool prestado);
+        virtual string mostrarInformacion();
         string getNombre();
         string getisbn();
         string getAutor();
         bool isPrestado();
-        void setPrestado();
-}
+        void setPrestado(bool prestado);
+        ~MaterialBibliografico();
+};
