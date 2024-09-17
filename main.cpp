@@ -4,7 +4,31 @@
 #include<string>
 using namespace std;
 
+void agregarMaterial(MaterialBibliografico[] materiales){
+    string nombre;
+    string isbn;
+    string autor;
+    string tipoLibro;
+    cout<<"Ingrese el tipo de material (Libro/Revista): "; cin >> tipoLibro;
+    while(tipoLibro != "Libro" && tipoLibro != "Revista"){
+        cout<<"Ingrese un tipo válido (Libro/Revista): "; cin >> tipoLibro;
+    }
+    cout<<"Ingrese el nombre: "; cin >> nombre;
+    cout<<"Ingrese el ISBN: "; cin >> isbn;
+    cout<<"Ingrese el autor: "; cin >> autor;
+    if(tipoLibro == "Libro"){
+        cout<<"Ingrese la fecha de publicacion: "; cin >> string fecha;
+        cout<<"Ingrese el resumen: "; cin >> string resumen;
+        for(int i = 0; i < materiales.size(); i++){
+            if(materiales[i] != nullptr){
+                materiales[i] = new Libro(nombre,isbn,autor,false,fecha,resumen);
+            }
+        }
+        
+    }
+}
 int main() {
+    MaterialBibliografico* materiales[100] = {};
     int opcion = 1;
     while (opcion != 0)
     {
@@ -13,10 +37,7 @@ int main() {
         switch (opcion)
         {
         case 1:
-            string nombre;
-            cout<<"Ingrese el nombre del material: ";
-            cin>> nombre;
-            cout<<""<<endl;
+            agregarMaterial(materiales);
             break;
         
         
@@ -24,6 +45,6 @@ int main() {
     }
     
     cout<<"XD"<<endl;
-    
+    delete materiales;
     return 0;
 }

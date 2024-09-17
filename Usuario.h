@@ -15,4 +15,5 @@ class Usuario
         void prestarMaterial(MaterialBibliografico material);
         void devolverMaterial(MaterialBibliografico material);
         string mostrarMaterialesPrestados();
-}
+        ~Usuario();
+};
