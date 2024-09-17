@@ -5,6 +5,7 @@
 using namespace std;
 
 void agregarMaterial(MaterialBibliografico[] materiales){
+    
     string nombre;
     string isbn;
     string autor;
@@ -26,6 +27,17 @@ void agregarMaterial(MaterialBibliografico[] materiales){
         }
         
     }
+    
+}
+void mostrarMateriales(MaterialBibliografico[] materiales){
+    for (int i = 0; i<materiales.size(); i++){
+        if (materiales[i] == nullptr){break;}
+        cout<<i<<"\n"<<materiales.mostrarInformacion()<<"\n"<<endl;
+    }  
+}
+
+void buscarMateriales(MaterialBibliografico[] materiales){
+    MaterialBibliografico* materialptr;
 }
 int main() {
     MaterialBibliografico* materiales[100] = {};
@@ -33,14 +45,22 @@ int main() {
     while (opcion != 0)
     {
         cout<< "Ingrese la acción a realizar\n 1.- Agregar material bibliografico\n 2.- Mostrar informacion de los materiales\n 3.- Buscar un material\n 4.- Prestar y devolver material\n 5.- Gestion de usuarios\n"<< endl;
+        
         cin>>opcion;
         switch (opcion)
         {
         case 1:
+            
             agregarMaterial(materiales);
             break;
-        
-        
+
+        case 2:
+            mostrarMateriales(materiales);
+            break;
+
+        case 3:
+            mostrarMateriales(materiales);
+            break;
         }
     }
     
