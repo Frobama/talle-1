@@ -12,4 +12,4 @@ class Revista: public MaterialBibliografico
         string getEdicion();
         string getMesPublicacion();
         ~Revista();
-}
+};

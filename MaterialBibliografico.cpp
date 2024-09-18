@@ -1,4 +1,3 @@
-#pragma once
 #include "MaterialBibliografico.h"
 #include<iostream>
 #include<string>
@@ -6,7 +5,7 @@
 MaterialBibliografico::MaterialBibliografico(string nombre, string isbn, string autor, bool prestado)
 {
     this -> nombre = nombre;
-    this -> isbn;
+    this -> isbn = isbn;
     this -> autor = autor;
     this -> prestado = prestado;
 }

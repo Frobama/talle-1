@@ -1,10 +1,12 @@
 #include <iostream>
-#include "MaterialBibliografico.h"
-#include "Libro.h"
+#include "MaterialBibliografico.cpp"
+#include "Libro.cpp"
+#include "Revista.cpp"
 #include<string>
 using namespace std;
 
-void agregarMaterial(MaterialBibliografico[] materiales){
+
+void agregarMaterial(MaterialBibliografico* materiales[100]){
     
     string nombre;
     string isbn;
@@ -18,29 +20,31 @@ void agregarMaterial(MaterialBibliografico[] materiales){
     cout<<"Ingrese el ISBN: "; cin >> isbn;
     cout<<"Ingrese el autor: "; cin >> autor;
     if(tipoLibro == "Libro"){
-        cout<<"Ingrese la fecha de publicacion: "; cin >> string fecha;
-        cout<<"Ingrese el resumen: "; cin >> string resumen;
-        for(int i = 0; i < materiales.size(); i++){
-            if(materiales[i] != nullptr){
-                materiales[i] = new Libro(nombre,isbn,autor,false,fecha,resumen);
+        string fecha;
+        string resumen;
+        cout<<"Ingrese la fecha de publicacion: "; cin >> fecha;
+        cout<<"Ingrese el resumen: "; cin >> resumen;
+        for(int i = 0; i < 100; i++){
+            if(materiales[i] == nullptr){
+                bool prestado = false;
+                Libro* l = new Libro(nombre,isbn,autor,prestado,fecha,resumen);
+                materiales[i] = l;
+                break;
             }
         }
         
     }
     
 }
-void mostrarMateriales(MaterialBibliografico[] materiales){
-    for (int i = 0; i<materiales.size(); i++){
+void mostrarMateriales(MaterialBibliografico* materiales[100]){
+    for (int i = 0; i<100; i++){
         if (materiales[i] == nullptr){break;}
-        cout<<i<<"\n"<<materiales.mostrarInformacion()<<"\n"<<endl;
+        cout<<i+1<<"1.-\n"<<materiales[i]->mostrarInformacion()<<"\n"<<endl;
     }  
 }
 
-void buscarMateriales(MaterialBibliografico[] materiales){
-    MaterialBibliografico* materialptr;
-}
 int main() {
-    MaterialBibliografico* materiales[100] = {};
+    MaterialBibliografico* materiales[100] = {nullptr};
     int opcion = 1;
     while (opcion != 0)
     {
@@ -65,6 +69,8 @@ int main() {
     }
     
     cout<<"XD"<<endl;
-    delete materiales;
+    for(int i = 0; i < 100; i++){
+        delete materiales[i];
+    }
     return 0;
 }

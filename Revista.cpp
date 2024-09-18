@@ -1,5 +1,6 @@
 #pragma once
 #include "Revista.h"
+#include "MaterialBibliografico.h"
 #include<iostream>
 #include<string>
 
@@ -28,5 +29,5 @@ string Revista::getMesPublicacion()
 
 Revista::~Revista()
 {
-    cout<<"Se destruyó una revista de nombre " + this->nombre <<endl;
+    cout<<"Se destruyó una revista de nombre " + this->getNombre() <<endl;
 }

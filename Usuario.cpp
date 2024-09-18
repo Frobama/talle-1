@@ -1,4 +1,5 @@
 #include "Usuario.h"
+#include "MaterialBibliografico.h"
 #include<iostream>
 using namespace std;
 
@@ -21,7 +22,7 @@ string Usuario::getId()
 
 void Usuario::prestarMaterial(MaterialBibliografico material)
 {
-    for(int i = 0; i < materialesPrestados.size(); i++){
+    for(int i = 0; i < 5; i++){
         if(materialesPrestados[i] == nullptr){
             materialesPrestados[i] = material;
             break;
@@ -32,7 +33,7 @@ void Usuario::prestarMaterial(MaterialBibliografico material)
 
 void Usuario::devolverMaterial(MaterialBibliografico material)
 {
-    for(int i = 0; i < materialesPrestados.size(); i++){
+    for(int i = 0; i < 5; i++){
         if(materialesPrestados[i] == nullptr){
             materialesPrestados[i] = nullptr;
             break;
@@ -44,7 +45,7 @@ void Usuario::devolverMaterial(MaterialBibliografico material)
 string Usuario::mostrarMaterialesPrestados()
 {
     string info = "";
-    for(int i = 0; i < materialesPrestados.size(); i++){
+    for(int i = 0; i < 5; i++){
         if(materialesPrestados[i] == nullptr){
             break;
         }

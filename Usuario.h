@@ -1,6 +1,7 @@
 #pragma once
 #include<string>
-#include "MaterialBibliografico"
+#include "MaterialBibliografico.h"
+
 using namespace std;
 class Usuario
 {

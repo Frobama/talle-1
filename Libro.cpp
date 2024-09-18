@@ -1,4 +1,3 @@
-#pragma once
 #include "MaterialBibliografico.h"
 #include "Libro.h"
 #include<iostream>
@@ -28,5 +27,5 @@ string Libro::getResumen()
 
 Libro::~Libro()
 {
-    cout<<"Se destruyó un libro de nombre " + this->nombre <<endl;
+    cout<<"Se destruyó un libro de nombre " + this->getNombre() <<endl;
 }
