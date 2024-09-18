@@ -25,6 +25,11 @@ string Libro::getResumen()
     return this->resumen;
 }
 
+string Libro::getLine()
+{
+    return "Libro," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getFecha() + "," + this->getResumen();
+}
+
 Libro::~Libro()
 {
     cout<<"Se destruyó un libro de nombre " + this->getNombre() <<endl;

@@ -13,8 +13,8 @@ class Usuario
         Usuario(string nombre, string id);
         string getNombre();
         string getId();
-        void prestarMaterial(MaterialBibliografico material);
-        void devolverMaterial(MaterialBibliografico material);
+        bool prestarMaterial(MaterialBibliografico* material);
+        bool devolverMaterial(MaterialBibliografico* material);
         string mostrarMaterialesPrestados();
         ~Usuario();
 };

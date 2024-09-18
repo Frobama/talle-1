@@ -17,5 +17,6 @@ class MaterialBibliografico{
         string getAutor();
         bool isPrestado();
         void setPrestado(bool prestado);
+        virtual string getLine();
         virtual ~MaterialBibliografico();
 };

@@ -11,5 +11,6 @@ class Libro: public MaterialBibliografico
         string mostrarInformacion();
         string getFecha();
         string getResumen();
+        string getLine();
         ~Libro();
 };

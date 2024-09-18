@@ -7,7 +7,9 @@ Usuario::Usuario(string nombre, string id)
 {
     this -> nombre = nombre;
     this -> id = id;
-    this -> materialesPrestados = new MaterialBibliografico[5];
+    for(int i = 0; i < 5 ; i++){
+        this -> materialesPrestados[i] = nullptr;
+    }
 }
 
 string Usuario::getNombre()
@@ -20,26 +22,28 @@ string Usuario::getId()
     return this->id;
 }
 
-void Usuario::prestarMaterial(MaterialBibliografico material)
+bool Usuario::prestarMaterial(MaterialBibliografico* material)
 {
     for(int i = 0; i < 5; i++){
         if(materialesPrestados[i] == nullptr){
             materialesPrestados[i] = material;
-            break;
+            return true;
         }
     }
     cout<<"El usuario " + this->nombre + " no puede tener más de 5 materiales."<<endl;
+    return false;
 }
 
-void Usuario::devolverMaterial(MaterialBibliografico material)
+bool Usuario::devolverMaterial(MaterialBibliografico* material)
 {
     for(int i = 0; i < 5; i++){
         if(materialesPrestados[i] == nullptr){
             materialesPrestados[i] = nullptr;
-            break;
+            return true;
         }
     }
     cout<<"El usuario " + this->nombre + " no tiene ese material."<<endl;
+    return false;
 }
 
 string Usuario::mostrarMaterialesPrestados()
@@ -49,7 +53,7 @@ string Usuario::mostrarMaterialesPrestados()
         if(materialesPrestados[i] == nullptr){
             break;
         }
-        info += materialesPrestados[i]->mostrarInformacion();
+        info += materialesPrestados[i]->mostrarInformacion() + "\n";
 
     }
     if(info == ""){

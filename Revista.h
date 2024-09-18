@@ -11,5 +11,6 @@ class Revista: public MaterialBibliografico
         string mostrarInformacion();
         string getEdicion();
         string getMesPublicacion();
+        string getLine();
         ~Revista();
 };

@@ -44,4 +44,9 @@ void MaterialBibliografico::setPrestado(bool prestado)
     this -> prestado = prestado;
 }
 
+string MaterialBibliografico::getLine()
+{
+    return "";
+}
+
 MaterialBibliografico::~MaterialBibliografico(){std::cout<<"Se destruyó un material"<<std::endl;}

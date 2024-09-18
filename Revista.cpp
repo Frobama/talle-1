@@ -27,6 +27,11 @@ string Revista::getMesPublicacion()
     return this -> mesPublicacion;
 }
 
+string Revista::getLine()
+{
+    return "Revista," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getEdicion() + "," + this->getMesPublicacion();
+}
+
 Revista::~Revista()
 {
     cout<<"Se destruyó una revista de nombre " + this->getNombre() <<endl;
