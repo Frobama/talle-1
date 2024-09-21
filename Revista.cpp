@@ -1,6 +1,7 @@
 #pragma once
 #include "Revista.h"
 #include "MaterialBibliografico.h"
+#include "Usuario.h"
 #include<iostream>
 #include<string>
 
@@ -29,7 +30,11 @@ string Revista::getMesPublicacion()
 
 string Revista::getLine()
 {
-    return "Revista," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getEdicion() + "," + this->getMesPublicacion();
+    if(this->getUsuario() != nullptr){
+        return "Revista," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getEdicion() + "," + this->getMesPublicacion() + "," + this->getUsuario()->getNombre() + "," + this->getUsuario()->getId();
+    } else {
+        return "Revista," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getEdicion() + "," + this->getMesPublicacion();
+    }
 }
 
 Revista::~Revista()

@@ -1,5 +1,6 @@
 #include "MaterialBibliografico.h"
 #include "Libro.h"
+#include "Usuario.h"
 #include<iostream>
 #include<string>
 using namespace std;
@@ -27,7 +28,11 @@ string Libro::getResumen()
 
 string Libro::getLine()
 {
-    return "Libro," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getFecha() + "," + this->getResumen();
+    if(this->getUsuario()!=nullptr){
+        return "Libro," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getFecha() + "," + this->getResumen() + "," + this->getUsuario()->getNombre() + "," + this->getUsuario()->getId();
+    } else{
+        return "Libro," + this->getNombre() + "," + this->getisbn() + "," + this->getAutor() + "," + (this->isPrestado() ? "true" : "false") + "," + this->getFecha() + "," + this->getResumen();
+    }
 }
 
 Libro::~Libro()

@@ -8,6 +8,7 @@ MaterialBibliografico::MaterialBibliografico(string nombre, string isbn, string 
     this -> isbn = isbn;
     this -> autor = autor;
     this -> prestado = prestado;
+    this ->usuarioPrestado = nullptr;
 }
 
 string MaterialBibliografico::mostrarInformacion()
@@ -22,6 +23,11 @@ string MaterialBibliografico::mostrarInformacion()
 string MaterialBibliografico::getNombre()
 {
     return this -> nombre;
+}
+
+Usuario *MaterialBibliografico::getUsuario()
+{
+    return this->usuarioPrestado;
 }
 
 string MaterialBibliografico::getisbn()
@@ -39,9 +45,11 @@ bool MaterialBibliografico::isPrestado()
     return this -> prestado;
 }
 
-void MaterialBibliografico::setPrestado(bool prestado)
+void MaterialBibliografico::setPrestado(bool prestado, Usuario* usuario)
 {
     this -> prestado = prestado;
+    if(prestado){this->usuarioPrestado=usuario;}
+    else{this->usuarioPrestado=nullptr;}
 }
 
 string MaterialBibliografico::getLine()
