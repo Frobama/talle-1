@@ -37,7 +37,7 @@ bool Usuario::prestarMaterial(MaterialBibliografico* material)
 bool Usuario::devolverMaterial(MaterialBibliografico* material)
 {
     for(int i = 0; i < 5; i++){
-        if(materialesPrestados[i] == nullptr){
+        if(materialesPrestados[i] == material){
             materialesPrestados[i] = nullptr;
             return true;
         }
@@ -60,6 +60,16 @@ string Usuario::mostrarMaterialesPrestados()
         return "El usuario no tiene materiales prestados";
     }
     return info;
+}
+
+void Usuario::borrar()
+{
+    for(int i = 0; i < 5; i++){
+        if(materialesPrestados[i] != nullptr){
+            this->materialesPrestados[i]->setPrestado(false, this);
+            this->materialesPrestados[i] = nullptr;
+        }
+    }
 }
 
 Usuario::~Usuario()

@@ -16,5 +16,6 @@ class Usuario
         bool prestarMaterial(MaterialBibliografico* material);
         bool devolverMaterial(MaterialBibliografico* material);
         string mostrarMaterialesPrestados();
+        void borrar();
         ~Usuario();
 };

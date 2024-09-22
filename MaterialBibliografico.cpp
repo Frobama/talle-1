@@ -17,7 +17,7 @@ string MaterialBibliografico::mostrarInformacion()
     if(this->prestado){p = "Prestado";}
     else{p = "Disponible";}
 
-    return "Nombre: " + this->nombre + "\nISBN: " + this->isbn + "\nAutor: " + this->autor + "\nDispoibilidad: " + p;
+    return "Nombre: " + this->nombre + "\nISBN: " + this->isbn + "\nAutor: " + this->autor + "\nDisponibilidad: " + p;
 }
 
 string MaterialBibliografico::getNombre()

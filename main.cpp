@@ -75,6 +75,7 @@ MaterialBibliografico* buscarMaterial(MaterialBibliografico* materiales[100]){
     if(op == "1"){
         string nombre;
         cout<<"Ingrese el nombre del material: ";
+        cin.ignore();
         getline(cin,nombre);
         for (int i = 0; i < 100; i++){
             if(materiales[i] != nullptr && materiales[i]->getNombre() == nombre){
@@ -85,6 +86,7 @@ MaterialBibliografico* buscarMaterial(MaterialBibliografico* materiales[100]){
     if(op == "2"){
         string autor;
         cout<<"Ingrese el nombre del autor: ";
+        cin.ignore();
         getline(cin,autor);
         for (int i = 0; i < 100; i++){
             if(materiales[i] != nullptr && materiales[i]->getAutor() == autor){
@@ -135,7 +137,7 @@ void cargarUsuarios(Usuario* listaUsuarios[100]){
 
     int i = 0;
     string linea;
-    
+
     while(getline(archivo, linea) && i < 100){
         stringstream ss(linea);
         string nombre,id;
@@ -187,12 +189,11 @@ void cargarBiblioteca(MaterialBibliografico* biblioteca[100], Usuario* listaUsua
         getline(ss, isbn, ',');
         getline(ss, autor, ',');
         getline(ss, prestado, ',');
-        getline(ss, edicion, ',');
         getline(ss, aux1, ',');
         getline(ss, aux2, ',');
         getline(ss, nombreUsuario, ',');
         getline(ss, idUsuario,',');
-
+        
         bool prestadoBool = false;
         if(prestado == "true"){
             prestadoBool = true;
@@ -213,10 +214,61 @@ void cargarBiblioteca(MaterialBibliografico* biblioteca[100], Usuario* listaUsua
     archivo.close();
     cout<<"Se cargó la biblioteca con exito"<<endl;
 }
+
+void crearUsuario(Usuario* listaUsuarios[100]){
+    
+    for(int i = 0; i < 100; i++){
+        if(listaUsuarios[i] == nullptr){
+            string nombre;
+            string id;
+            cout<<"Ingrese el nombre del usuario "; 
+            cin.ignore();
+            getline(cin,nombre);
+            cout<<"Ingrese el id del usuario ";
+            cin>>id;
+            listaUsuarios[i] = new Usuario(nombre,id);
+            return;
+        }
+    }
+    cout<<"No se pudo agregar al usuario, ya que ya hay 100 usuarios registrados"<<endl;
+}
+
+Usuario* buscarUsuario(Usuario* listaUsuarios[100]){
+    int op = 0;
+    while(op != 1 && op != 2){
+        cout<<"Ingrese 1 para buscar por nombre\nIngrese 2 para buscar por id"<<endl;
+        cin>>op;
+    }
+    if(op == 1){
+        string nombre;
+        cout<<"Ingrese el nombre del usuario: ";
+        cin.ignore();
+        getline(cin,nombre);
+        for(int i = 0; i < 100; i++){
+            if(listaUsuarios[i] != nullptr && listaUsuarios[i]->getNombre() == nombre){
+                return listaUsuarios[i];
+            }
+        }
+    }
+    else{
+        string id;
+        cout<<"Ingrese el id del usuario: ";
+        cin>>id;
+        for(int i = 0; i < 100; i++){
+            if(listaUsuarios[i] != nullptr && listaUsuarios[i]->getId() == id){
+                return listaUsuarios[i];
+            }
+        }
+    }
+    return nullptr;
+}
+
+
 int main() {
     Usuario* listaUsuarios[100] = {nullptr};
     cargarUsuarios(listaUsuarios);
     Usuario* usuarioActual = nullptr;
+    Usuario* aux;
     MaterialBibliografico* biblioteca[100] = {nullptr};
     cargarBiblioteca(biblioteca,listaUsuarios);
     MaterialBibliografico* materialBuscar = nullptr;
@@ -249,15 +301,108 @@ int main() {
             }
             break;
         
-        
+        case 4:
+            if(usuarioActual==nullptr){
+                cout<<"Inicie sesion para pedir o devolver un material"<<endl;
+            } else {
+
+                int opPrestamo;
+                cout<<"¿Desea pedir prestado (1) o devolver un material (2)?"<<endl;
+                cin>>opPrestamo;
+                
+                while(opPrestamo != 1 && opPrestamo != 2) {
+                    cout<<"Ingrese una opción válida"<<endl;
+                    cin>>opPrestamo;
+                }
+
+                materialBuscar = buscarMaterial(biblioteca);
+                if(materialBuscar == nullptr){
+                    cout<<"El material ingresado no existe en la biblioteca"<<endl;
+                    break;
+                }
+
+                if(opPrestamo == 1){
+                    if(materialBuscar->isPrestado()){
+                        cout<<"El material ya ha sido prestado al usuario "<<materialBuscar->getUsuario()->getNombre()<<endl;
+                    }
+                    else{
+                        if(usuarioActual->prestarMaterial(materialBuscar)){
+                            materialBuscar->setPrestado(true,usuarioActual);
+                            cout<<"Se ha prestado el material "<<materialBuscar->getNombre()<<" al usuario "<<usuarioActual->getNombre()<<endl;
+                        }
+
+                    }
+                }
+                if(opPrestamo == 2) {
+                    if(!materialBuscar->isPrestado()){
+                        cout<<"El material no se ha prestado a nadie"<<endl;
+                    }
+                    else{
+                        if(usuarioActual->devolverMaterial(materialBuscar)){
+                            cout<<"Se ha devuelto el material "<<materialBuscar->getNombre()<<" por el usuario "<<usuarioActual->getNombre();
+                            materialBuscar->setPrestado(false,usuarioActual);
+                        }
+                    }
+                }
+            }
+            break;
+
+        case 5: 
+            int opcionUsuario = 1;
+            while(opcionUsuario != 0){
+                cout<<"Ingrese la acción a realizar\n"<<endl;
+                cout<<" 1.- Crear usuario\n 2.- Cambiar usuario\n 3.- Buscar usuario (ver su información)\n 4.- Eliminar usuario\n 0.-Salir"<<endl;
+                cin>>opcionUsuario;
+
+                switch(opcionUsuario){
+                    case 1:
+                        crearUsuario(listaUsuarios);
+                        break;
+                    case 2:
+                        aux = buscarUsuario(listaUsuarios);
+                        if(aux != nullptr){
+                            usuarioActual = aux;
+                            cout<<"Se ha cambiado al usuario "<<usuarioActual->getNombre()<<endl;
+                        } 
+                        else{
+                            cout<<"El usuario no existe en el sistema"<<endl;
+                        }
+                        break;
+                    case 3:
+                        aux = buscarUsuario(listaUsuarios);
+                        if(aux != nullptr){
+                            cout<<"\nMostrando la informacion del usuario:"<<endl;
+                            cout<<"Nombre: "<<aux->getNombre()<<"\nID: "<<aux->getId()<<endl;
+                            cout<<"Materiales prestados a "<<aux->getNombre()<<":\n"<<endl;
+                            cout<<aux->mostrarMaterialesPrestados()<<endl;
+                        }
+                        else{
+                            cout<<"El usuario no existe en el sistema"<<endl;
+                        }
+                        break;
+                    case 4:
+                        aux = buscarUsuario(listaUsuarios);
+                        if(aux != nullptr){
+                            aux->borrar();
+                            delete aux;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+                
         }
     }
     cout<<"XD"<<endl;
     guardarBiblioteca(biblioteca);
     guardarUsuarios(listaUsuarios);
-    delete materialBuscar;
     for(int i = 0; i < 100; i++){
         delete biblioteca[i];
+    }
+    for(int i = 0; i < 100; i++){
+        delete listaUsuarios[i];
     }
     return 0;
 }
