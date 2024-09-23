@@ -237,6 +237,7 @@ Usuario* buscarUsuario(Usuario* listaUsuarios[100]){
     int op = 0;
     while(op != 1 && op != 2){
         cout<<"Ingrese 1 para buscar por nombre\nIngrese 2 para buscar por id"<<endl;
+        cin.ignore();
         cin>>op;
     }
     if(op == 1){
@@ -395,7 +396,6 @@ int main() {
                 
         }
     }
-    cout<<"XD"<<endl;
     guardarBiblioteca(biblioteca);
     guardarUsuarios(listaUsuarios);
     for(int i = 0; i < 100; i++){

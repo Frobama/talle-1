@@ -1,1 +1,3 @@
 Libro,libro poo,123,Eric Ross,true,hoy,mi sentencia de muerte,Benjamin Rojas,123456
+Libro,ghr llega tarde,12,Jota,true,hoy,adivinen,Benjamin Rojas,123456
+Revista,seumadruga,4202,eljuan,false,1,ayer
