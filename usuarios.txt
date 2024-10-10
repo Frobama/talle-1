@@ -1,2 +1,5 @@
 Benjamin Rojas,123456
 torres,26
+ghr,810
+jisu,123
+jota,1

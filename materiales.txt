@@ -1,3 +1,6 @@
 Libro,libro poo,123,Eric Ross,true,hoy,mi sentencia de muerte,Benjamin Rojas,123456
 Libro,ghr llega tarde,12,Jota,true,hoy,adivinen,Benjamin Rojas,123456
-Revista,seumadruga,4202,eljuan,false,1,ayer
+Revista,seumadruga,4202,eljuan,true,ayer,lol,Benjamin Rojas,123456
+Revista,jisu se vuelve maya,1909,rojas,true,cuando vuelva de mexico,jisu no te vuelvas mejicano xfavo,Benjamin Rojas,123456
+Revista,XD,2,callampaman,true,XD,XD,Benjamin Rojas,123456
+Libro,rv va al comite de etica,2345,C,false,1,mañana

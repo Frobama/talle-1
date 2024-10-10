@@ -12,6 +12,15 @@ Usuario::Usuario(string nombre, string id)
     }
 }
 
+bool Usuario::isListaVacia(){
+    for(int i = 0; i < 5 ; i++){
+        if (materialesPrestados[i] != nullptr){
+            return false;
+        }
+    }
+    return true;
+}
+
 string Usuario::getNombre()
 {
     return this->nombre;
