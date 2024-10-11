@@ -1,4 +1,5 @@
 #pragma once
+#include "MaterialBibliografico.h"
 #include<string>
 
 class Revista: public MaterialBibliografico

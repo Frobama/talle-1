@@ -1,6 +1,4 @@
-#include "MaterialBibliografico.h"
 #include "Libro.h"
-#include "Usuario.h"
 #include<iostream>
 #include<string>
 using namespace std;

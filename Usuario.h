@@ -3,6 +3,9 @@
 #include "MaterialBibliografico.h"
 
 using namespace std;
+
+class MaterialBibliografico;
+
 class Usuario
 {
     private:

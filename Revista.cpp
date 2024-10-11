@@ -1,7 +1,4 @@
-#pragma once
 #include "Revista.h"
-#include "MaterialBibliografico.h"
-#include "Usuario.h"
 #include<iostream>
 #include<string>
 

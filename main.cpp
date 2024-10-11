@@ -1,11 +1,11 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include "MaterialBibliografico.cpp"
-#include "Libro.cpp"
-#include "Revista.cpp"
-#include "Usuario.cpp"
-#include<string>
+#include"MaterialBibliografico.cpp"
+#include"Libro.cpp"
+#include"Revista.cpp"
+#include"Usuario.cpp"
+#include<iostream>
+#include<fstream>
+#include<sstream>
+#include<string.h>
 using namespace std;
 
 void agregarMaterial(MaterialBibliografico* materiales[100]){
