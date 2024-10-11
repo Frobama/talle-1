@@ -14,6 +14,7 @@ class Usuario
         MaterialBibliografico* materialesPrestados[5];
     public:
         Usuario(string nombre, string id);
+        bool isListaVacia();
         string getNombre();
         string getId();
         bool prestarMaterial(MaterialBibliografico* material);

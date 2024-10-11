@@ -70,7 +70,11 @@ MaterialBibliografico* buscarMaterial(MaterialBibliografico* materiales[100]){
     string op;
     cin>>op;
     while(op != "1" && op != "2"){
-        cout<<"Ingrese 1 para buscar por nombre\nIngrese 2 para buscar por autor"; cin>>op;    
+        if (op != "1" && op != "2"){
+            cout<<"ingrese una opción válida\n"<<endl;
+        } 
+        cout<<"Ingrese 1 para buscar por nombre\nIngrese 2 para buscar por autor"; cin>>op;   
+        
     }
     if(op == "1"){
         string nombre;
@@ -99,8 +103,12 @@ MaterialBibliografico* buscarMaterial(MaterialBibliografico* materiales[100]){
 
 Usuario* buscarUsuario(Usuario* listaUsuarios[100], string nombre, string id){
     for(int i = 0; i < 100; i++){
-        if(listaUsuarios[i] != nullptr && listaUsuarios[i]->getNombre() == nombre && listaUsuarios[i]->getId() == id){
-            return listaUsuarios[i];
+        
+        if(listaUsuarios[i] != nullptr){
+            if (listaUsuarios[i]->getNombre() == nombre && listaUsuarios[i]->getId() == id)
+            {
+                return listaUsuarios[i];
+            }  
         }
     }
     return nullptr;
@@ -229,16 +237,21 @@ void crearUsuario(Usuario* listaUsuarios[100]){
             listaUsuarios[i] = new Usuario(nombre,id);
             return;
         }
+        
     }
     cout<<"No se pudo agregar al usuario, ya que ya hay 100 usuarios registrados"<<endl;
 }
 
 Usuario* buscarUsuario(Usuario* listaUsuarios[100]){
+
     int op = 0;
     while(op != 1 && op != 2){
-        cout<<"Ingrese 1 para buscar por nombre\nIngrese 2 para buscar por id"<<endl;
+        cout<<"Ingrese 1 para buscar por nombre\nIngrese 2 para buscar por id\n"<<endl;
         cin.ignore();
         cin>>op;
+        if (op != 1 && op != 2){
+            cout<<"ingrese una opción válida"<<endl;
+        }
     }
     if(op == 1){
         string nombre;
@@ -246,8 +259,11 @@ Usuario* buscarUsuario(Usuario* listaUsuarios[100]){
         cin.ignore();
         getline(cin,nombre);
         for(int i = 0; i < 100; i++){
-            if(listaUsuarios[i] != nullptr && listaUsuarios[i]->getNombre() == nombre){
-                return listaUsuarios[i];
+            if(listaUsuarios[i] != nullptr){
+                if (listaUsuarios[i]->getNombre() == nombre){
+                    return listaUsuarios[i];
+                }
+                
             }
         }
     }
@@ -256,13 +272,17 @@ Usuario* buscarUsuario(Usuario* listaUsuarios[100]){
         cout<<"Ingrese el id del usuario: ";
         cin>>id;
         for(int i = 0; i < 100; i++){
-            if(listaUsuarios[i] != nullptr && listaUsuarios[i]->getId() == id){
-                return listaUsuarios[i];
+            if(listaUsuarios[i] != nullptr){
+                if (listaUsuarios[i]->getId() == id){
+                    return listaUsuarios[i];
+                }
+                
             }
         }
     }
     return nullptr;
 }
+
 
 
 int main() {
@@ -383,9 +403,14 @@ int main() {
                         break;
                     case 4:
                         aux = buscarUsuario(listaUsuarios);
+                        
                         if(aux != nullptr){
                             aux->borrar();
                             delete aux;
+
+                        }
+                        else{
+                            cout<<"El usuario no existe"<<endl;
                         }
                         break;
 
