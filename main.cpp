@@ -8,6 +8,14 @@
 #include<string.h>
 using namespace std;
 
+
+/** @brief agrega un material a la lista
+ * 
+ *  Esta función primero comprueba que no haya más de 100 materiales. Si se cumple, 
+ *  le pide al usuario que ingrese la información de un material, y guarda el puntero en la lista materiales
+ * 
+ *  @param materiales lista con capacidad para 100 punteros de MaterialBibliografico
+ */
 void agregarMaterial(MaterialBibliografico* materiales[100]){
     if(materiales[99] != nullptr){
         cout<<"No se pudo agregar el material, ya hay más de 100 materiales"<<endl;
@@ -58,6 +66,13 @@ void agregarMaterial(MaterialBibliografico* materiales[100]){
         }
     }
 }
+
+/** @brief Muestra por pantalla los materiales
+ * 
+ *  Recorre la lista de materiales, imprimiendo su información, hasta que llega al primer nullptr y sale de la función 
+ * 
+ *  @param materiales Lista de 100 punteros de MaterialBibliografico
+ */ 
 void mostrarMateriales(MaterialBibliografico* materiales[100]){
     for (int i = 0; i<100; i++){
         if (materiales[i] == nullptr){break;}
@@ -65,6 +80,15 @@ void mostrarMateriales(MaterialBibliografico* materiales[100]){
     }  
 }
 
+
+/** @brief Busca un material en la lista
+ * 
+ *  Busca un material en la lista por nombre o por autor ingresado por el usuario
+ * 
+ *  @param materiales lista de 100 punteros de MaterialBibliografico
+ * 
+ *  @return puntero al MaterialBibliografico se es encontrado, o nullptr si no
+*/
 MaterialBibliografico* buscarMaterial(MaterialBibliografico* materiales[100]){
     cout<<"Ingrese 1 para buscar por nombre\nIngrese 2 para buscar por autor"<<endl;
     string op;
@@ -101,6 +125,16 @@ MaterialBibliografico* buscarMaterial(MaterialBibliografico* materiales[100]){
     return nullptr;
 }
 
+/** @brief Busca un usuario en la lista
+ * 
+ *  Busca un usuario por nombre o id
+ *  Este metodo solo se usa al cargar usuarios
+ * 
+ *  @param listaUsuarios Lista de punteros de Usuario
+ *  @param nombre Nombre del usuario a buscar
+ *  @param id ID del usuario a buscar
+ *  @return 
+ */
 Usuario* buscarUsuario(Usuario* listaUsuarios[100], string nombre, string id){
     for(int i = 0; i < 100; i++){
         
@@ -114,6 +148,13 @@ Usuario* buscarUsuario(Usuario* listaUsuarios[100], string nombre, string id){
     return nullptr;
 }
 
+/** @brief Guarda los usuarios en un txt
+ * 
+ *  Escribe la informacion de los usuarios en usuarios.txt
+ * 
+ *  @param usuarios lista de usuarios a guardar
+ * 
+ */
 void guardarUsuarios(Usuario* usuarios[100]){
 
     ofstream archivo("usuarios.txt");
@@ -134,6 +175,13 @@ void guardarUsuarios(Usuario* usuarios[100]){
     cout<<"Usuarios guardados exitosamente"<<endl;
 }
 
+/** @brief Carga la lista de usuarios desde un archivo
+ *  
+ *  Lee el archivo usuarios.txt, crea instancias de Usuario y las guarda en la lista
+ * 
+ *  @param listaUsuarios Lista de 100 punteros de usuarios
+ * 
+ */
 void cargarUsuarios(Usuario* listaUsuarios[100]){
 
     ifstream archivo("usuarios.txt");
@@ -157,6 +205,14 @@ void cargarUsuarios(Usuario* listaUsuarios[100]){
         i++;
     }
 }
+
+/** @brief Guarda los materiales en un txt
+ * 
+ * Recorre la lista biblioteca, y guarda la información de los materiales en materiales.txt
+ * 
+ * @param biblioteca lista de materiales
+ * 
+ */ 
 void guardarBiblioteca(MaterialBibliografico* biblioteca[100]){
 
     ofstream archivo("materiales.txt");
@@ -177,6 +233,14 @@ void guardarBiblioteca(MaterialBibliografico* biblioteca[100]){
     cout<<"Biblioteca guardada exitosamente"<<endl;
 }
 
+/** @brief Carga materiales desde un archivo
+ * 
+ * Lee el archivo materiales.txt, guarda los materiales en la lista biblioteca, y busca si el usuario que tiene el material existe
+ * 
+ * @param biblioteca lista de materiales
+ * @param listaUsuarios lista de usuarios
+ * 
+ */
 void cargarBiblioteca(MaterialBibliografico* biblioteca[100], Usuario* listaUsuarios[100]){
 
     ifstream archivo("materiales.txt");
@@ -223,6 +287,12 @@ void cargarBiblioteca(MaterialBibliografico* biblioteca[100], Usuario* listaUsua
     cout<<"Se cargó la biblioteca con exito"<<endl;
 }
 
+/** @brief Crea un usuario nuevo
+ * 
+ * Se solicita el nombre e id del usuario y lo agrega a la lista
+ * 
+ * @param listaUsuarios Lista donde se agrega al usuario
+ */  
 void crearUsuario(Usuario* listaUsuarios[100]){
     
     for(int i = 0; i < 100; i++){
@@ -242,6 +312,13 @@ void crearUsuario(Usuario* listaUsuarios[100]){
     cout<<"No se pudo agregar al usuario, ya que ya hay 100 usuarios registrados"<<endl;
 }
 
+/** @brief Busca un usuario por su nombre o id
+ * 
+ * Este metodo es para buscar a un usuario ingresado por el usuario
+ * 
+ * @param listaUsuarios lista de usuarios a buscar
+ * @return Puntero del Usuario encontrado, o nullptr si no lo encuentra
+ */  
 Usuario* buscarUsuario(Usuario* listaUsuarios[100]){
 
     int op = 0;
@@ -285,6 +362,14 @@ Usuario* buscarUsuario(Usuario* listaUsuarios[100]){
 
 
 
+/** @brief Funcion principal del programa
+ * 
+ * Carga los usuarios y materiales, y permite al usuario agregar materiales, administrar usuarios, mostrar informacion y
+ * buscar materiales. Al finalizar, guarda los cambios realizados en los txt respectivos.
+ * 
+ * @return 0 al finalizar correctamente
+ * 
+ */
 int main() {
     Usuario* listaUsuarios[100] = {nullptr};
     cargarUsuarios(listaUsuarios);
